@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-billing-address-input',
-  templateUrl: './billing-address-input.component.html',
-  styleUrls: ['./billing-address-input.component.scss']
+  selector: "app-billing-address-input",
+  templateUrl: "./billing-address-input.component.html",
+  styleUrls: ["./billing-address-input.component.scss"]
 })
 export class BillingAddressInputComponent implements OnInit {
+  @Input() myForm: FormGroup;
+  @Input() submitted: boolean;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

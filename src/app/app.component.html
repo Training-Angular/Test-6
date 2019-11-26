@@ -7,11 +7,43 @@
     </div>
     <!-- End cart right-->
     <div class="col-md-8 order-md-1">
-      <app-checkout-form></app-checkout-form>
+      <app-checkout-form (saveData)="onSaveData($event, $event)"></app-checkout-form>
     </div>
     <!-- End form left -->
   </div>
   <!-- End form -->
+  <table class="table mt-5" *ngIf="data !== null">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Full name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data; index as i">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.firstName + " " + item.lastName}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.email}}</td>
+        <td>
+          <div class="d-flex align-items-center">
+            <span class="icon-wrapper text-center edit">
+              <i class="btn btn-primary fas fa-edit" (click)="editData(i)"></i>
+            </span>
+            <span class="icon-wrapper text-center delete ml-3">
+              <i class="btn btn-primary fas fa-trash-alt" (click)="deleteData(i)"></i>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- End table -->
   <app-footer></app-footer>
   <!-- End footer -->
 </div>

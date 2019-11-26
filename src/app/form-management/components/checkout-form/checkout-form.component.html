@@ -1,7 +1,9 @@
 <h4 class="mb-3">Billing address</h4>
 
-<form class="needs-validation" novalidate="">
-  <app-billing-address-input></app-billing-address-input>
+<form class="needs-validation" novalidate="" [formGroup]="myForm">
+  <app-billing-address-input [submitted]="submitted" [myForm]="myForm">
+  </app-billing-address-input>
+
   <hr class="mb-4">
   <div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" id="same-address">
@@ -14,7 +16,8 @@
   </div>
   <!-- End checkbox -->
   <hr class="mb-4">
-  <app-payment-input></app-payment-input>
+  <app-payment-input [submitted]="submitted" [myForm]="myForm"></app-payment-input>
   <hr class="mb-4">
-  <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+  <button class="btn btn-primary btn-lg btn-block" (click)="onSubmit()" type="submit">Continue to
+    checkout</button>
 </form>
