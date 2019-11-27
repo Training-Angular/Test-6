@@ -7,7 +7,7 @@ import { FormGroup } from "@angular/forms";
   styleUrls: ["./billing-address-input.component.scss"]
 })
 export class BillingAddressInputComponent implements OnInit {
-  @Input() myForm: FormGroup;
+  @Input() checkoutForm: FormGroup;
   @Input() submitted: boolean;
 
   constructor() {}

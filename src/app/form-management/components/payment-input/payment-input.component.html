@@ -1,18 +1,18 @@
 <h4 class="mb-3">Payment</h4>
-<div [formGroup]="myForm">
+<div [formGroup]="checkoutForm">
   <div class="d-block my-3">
     <div class="custom-control custom-radio">
-      <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="CC" checked=""
-        required="" [formControlName]="'paymentMethod'">
+      <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="CC" checked="" required
+        [formControlName]="'paymentMethod'">
       <label class="custom-control-label" for="credit">Credit card</label>
     </div>
     <div class="custom-control custom-radio">
-      <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="DC" required=""
+      <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="DC" required
         [formControlName]="'paymentMethod'">
       <label class="custom-control-label" for="debit">Debit card</label>
     </div>
     <div class="custom-control custom-radio">
-      <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="PP" required=""
+      <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="PP" required
         [formControlName]="'paymentMethod'">
       <label class="custom-control-label" for="paypal">PayPal</label>
     </div>
@@ -21,8 +21,8 @@
   <div class="row">
     <div class="col-md-6 mb-3">
       <label for="cc-name">Name on card</label>
-      <input type="text" class="form-control" id="cc-name" placeholder="" required="" [formControlName]="'cardName'"
-        [ngClass]="{ 'is-invalid': submitted && myForm.controls.cardName.errors }">
+      <input type="text" class="form-control" id="cc-name" required [formControlName]="'cardName'"
+        [ngClass]="{ 'is-invalid': submitted && checkoutForm.controls.cardName.errors }">
       <small class="text-muted">Full name as displayed on card</small>
       <div class="invalid-feedback">
         Name on card is required
@@ -31,8 +31,8 @@
     <!-- End name on card -->
     <div class="col-md-6 mb-3">
       <label for="cc-number">Credit card number</label>
-      <input type="text" class="form-control" id="cc-number" placeholder="" required="" [formControlName]="'cardNumber'"
-        [ngClass]="{ 'is-invalid': submitted && myForm.controls.cardNumber.errors }">
+      <input type="text" class="form-control" id="cc-number" required [formControlName]="'cardNumber'"
+        [ngClass]="{ 'is-invalid': submitted && checkoutForm.controls.cardNumber.errors }">
       <div class="invalid-feedback">
         Credit card number is required
       </div>
@@ -42,8 +42,8 @@
   <div class="row">
     <div class="col-md-3 mb-3">
       <label for="cc-expiration">Expiration</label>
-      <input type="text" class="form-control" id="cc-expiration" placeholder="" required=""
-        [formControlName]="'expiration'" [ngClass]="{ 'is-invalid': submitted && myForm.controls.expiration.errors }">
+      <input type="text" class="form-control" id="cc-expiration" required [formControlName]="'expiration'"
+        [ngClass]="{ 'is-invalid': submitted && checkoutForm.controls.expiration.errors }">
       <div class="invalid-feedback">
         Expiration date required
       </div>
@@ -51,8 +51,8 @@
     <!-- End expiration -->
     <div class="col-md-3 mb-3">
       <label for="cc-cvv">CVV</label>
-      <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" [formControlName]="'cvv'"
-        [ngClass]="{ 'is-invalid': submitted && myForm.controls.cvv.errors }">
+      <input type="text" class="form-control" id="cc-cvv" required [formControlName]="'cvv'"
+        [ngClass]="{ 'is-invalid': submitted && checkoutForm.controls.cvv.errors }">
       <div class="invalid-feedback">
         Security code required
       </div>

@@ -1,60 +1,58 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, OnInit } from "@angular/core";
 import { CheckoutFormComponent } from "./form-management/components/checkout-form/checkout-form.component";
-import { HeaderComponent } from "./components/header/header.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   dataEdit: any;
   data: any;
   storage: Storage;
-  @ViewChild(CheckoutFormComponent) checkoutForm: CheckoutFormComponent;
+  @ViewChild(CheckoutFormComponent, { static: false })
+  checkoutForm: CheckoutFormComponent;
 
   constructor() {
     this.storage = window.localStorage;
   }
 
   ngOnInit(): void {
-    this.data = this.getValue("form");
+    this.data = this.getValueFromStorage("form");
   }
 
-  setObject(key: string, value: any): void {
+  setObjectIntoStorage(key: string, value: any): void {
     if (!value) {
       return;
     }
-
     this.storage[key] = JSON.stringify(value);
   }
 
-  getValue<T>(key: string): T {
+  getValueFromStorage<T>(key: string): T {
     const obj = JSON.parse(this.storage[key] || null);
-    return <T>obj || null;
+    return (obj as T) || null;
   }
 
   onSaveData(event) {
-    let tmp: [any] = this.getValue("form");
-
-    let result = null;
-    let { data, editing } = event;
+    const currentData: [any] = this.getValueFromStorage("form");
+    let newData = null;
+    const { data, editing } = event;
     if (editing.isEditing) {
-      result = [
-        ...tmp.slice(0, editing.index),
+      newData = [
+        ...currentData.slice(0, editing.index),
         data,
-        ...tmp.slice(editing.index + 1)
+        ...currentData.slice(editing.index + 1)
       ];
     } else {
-      result = tmp ? [...tmp, data] : [data];
+      newData = currentData ? [...currentData, data] : [data];
     }
-    this.setObject("form", result);
-    this.data = this.getValue("form");
+    this.setObjectIntoStorage("form", newData);
+    this.data = this.getValueFromStorage("form");
   }
 
   deleteData(index: number) {
     this.data.splice(index, 1);
-    this.setObject("form", this.data);
+    this.setObjectIntoStorage("form", this.data);
   }
 
   editData(index: number) {
